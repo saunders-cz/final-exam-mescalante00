@@ -11,7 +11,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 //Create apollo client
-const client = new ApolloClient({
+export const client = new ApolloClient({
   uri: "/graphql/",
   cache: new InMemoryCache(),
 });
