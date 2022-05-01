@@ -1,6 +1,6 @@
 import { Grid, Typography } from "@mui/material";
 import React from "react";
-import { LoginForm } from "../modules/user/LoginForm";
+import { LoginForm } from "../modules/login/LoginForm";
 
 export const Login = () => {
   return (

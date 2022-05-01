@@ -10,18 +10,6 @@ export const Home = () => {
         <Grid item>
           <img src="img/header.jpg" alt="header image" />
         </Grid>
-        <Grid item xs={12} md={4}>
-          <Typography variant="h2">User 1</Typography>
-          <img src="img/user.jpg" alt="user" />
-        </Grid>
-        <Grid item xs={12} md={4}>
-          <Typography variant="h2">User 1</Typography>
-          <img src="img/user.jpg" alt="user" />
-        </Grid>
-        <Grid item xs={12} md={4}>
-          <Typography variant="h2">User 1</Typography>
-          <img src="img/user.jpg" alt="user" />
-        </Grid>
         <Grid item>
           <Typography variant="h2">About the Company</Typography>
           <Typography variant="p">
