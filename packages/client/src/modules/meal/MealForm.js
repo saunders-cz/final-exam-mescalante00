@@ -2,7 +2,7 @@ import { Button, Grid, TextField, Typography } from "@mui/material";
 import { useFormik } from "formik";
 import React from "react";
 import * as yup from "yup";
-import { SelectCategory } from "./categories/SelectCategory";
+import { SelectCategory } from "../categories/SelectCategories.js";
 import { ADD_MEAL } from "./mutations";
 import { useMutation } from "@apollo/client";
 import { UPDATE_MEAL } from "./mutations";
