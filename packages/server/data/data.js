@@ -28,7 +28,15 @@ export const meals = [
 export const users = [
   {
     id: 1,
-    name: "Markie mark",
+    firstName: "Markie",
+    lastName: "Mark",
+    address: "Hollywood Blvd.",
+    email: "markiemark@aol.com",
+  },
+  {
+    id: 2,
+    firstName: "Barkie",
+    lastName: "Mark",
     address: "Hollywood Blvd.",
     email: "markiemark@aol.com",
   },

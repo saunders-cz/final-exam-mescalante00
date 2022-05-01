@@ -44,7 +44,8 @@ class User extends Model {}
 User.init(
   {
     id: { type: INTEGER, autoIncrement: true, primaryKey: true },
-    name: { type: STRING, allowNull: false },
+    firstName: { type: STRING, allowNull: false },
+    lastName: { type: STRING, allowNull: false },
     address: { type: STRING, allowNull: false },
     email: { type: STRING, allowNull: false },
   },
