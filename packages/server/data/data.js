@@ -19,7 +19,7 @@ export const meals = [
     id: 3,
     title: "Taco and Chicken",
     categoryId: 3,
-    imgsrc: "/img/Cheeseburger.jpg",
+    imgsrc: "/img/food.jpg",
     description: "Taco with chicken with sides.",
     price: 14.0,
   },

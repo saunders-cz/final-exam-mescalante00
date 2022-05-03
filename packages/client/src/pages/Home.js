@@ -10,18 +10,6 @@ export const Home = () => {
         <Grid item>
           <img src="img/header.jpg" alt="header image" />
         </Grid>
-        <Grid item xs={12} md={4}>
-          <Typography variant="h2">User 1</Typography>
-          <img src="img/user.jpg" alt="user" />
-        </Grid>
-        <Grid item xs={12} md={4}>
-          <Typography variant="h2">User 1</Typography>
-          <img src="img/user.jpg" alt="user" />
-        </Grid>
-        <Grid item xs={12} md={4}>
-          <Typography variant="h2">User 1</Typography>
-          <img src="img/user.jpg" alt="user" />
-        </Grid>
         <Grid item>
           <Typography variant="h2">About the Company</Typography>
           <Typography variant="p">
@@ -67,6 +55,10 @@ export const Home = () => {
             magna tempus vel.
           </Typography>
         </Grid>
+        <footer>
+          {" "}
+          <i> All rights reserved Carmen and Colomba 2022 </i>
+        </footer>
       </Grid>
     </>
   );

@@ -6,9 +6,10 @@ export const Navigation = () => {
   return (
     <>
       <nav>
-        <Link to="/home/">Home</Link>
-        <Link to="/admin/">Admin</Link>
+        <Link to="/">Home</Link>
+        <Link to="/login/">Login</Link>
         <Link to="/menu/">Menu</Link>
+        <Link to="/admin/">Admin</Link>
       </nav>
     </>
   );
