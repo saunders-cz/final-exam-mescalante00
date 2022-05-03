@@ -1,119 +1,102 @@
-import { Button, Grid, TextField, Typography } from "@mui/material";
-import React from "react";
+import { Button, Container, Grid, TextField } from "@mui/material";
 import { useFormik } from "formik";
-import * as yup from "yup";
+import { MailSwitch } from "./MailSwitch";
+import { ADD_USER, UPDATE_USER } from "./mutations";
 import { useMutation } from "@apollo/client";
-import { useNavigate } from "react-router-dom";
-import { ADD_USER, UPDATE_USER } from "./queries.js";
+import * as yup from "yup";
+
+const initialValues = {
+  name: "",
+  email: "",
+  address: "",
+};
 
 const validationSchema = yup.object({
-  username: yup.string().required().email().label("User name"),
+  name: yup.string().required().label("Name"),
   email: yup
     .string()
-    .email("Email address format")
+    .email("Invalid email format")
     .required()
     .label("Email Address"),
   address: yup.string().required().label("Street Address"),
 });
-//Add state
+
 export const LoginForm = ({ id, onClose }) => {
-  const navigate = useNavigate();
-  const mutation = id === undefined ? ADD_USER : UPDATE_USER;
-
-  const [addUser, { loading, error }] = useMutation(mutation, {
+  // const mutation = id === undefined ? ADD_USER : UPDATE_USER;
+  const [addUser, { loading, error }] = useMutation(ADD_USER, {
     onCompleted: () => {
-      if (onClose !== undefined) {
-        onClose(); //check if tab is open with IDs
-      }
+      if (onClose !== undefined) onClose();
     },
-    // refetchQueries: ["GET_SESSION", "GET_USERS"],
   });
-  //Upon completion reroute to front page
-  const {
-    handleReset,
-    handleSubmit,
-    handleChange,
-    handleBlur,
-    values,
-    errors,
-    isValid,
-    isSubmitting,
-  } = useFormik({
-    initialValues: {
-      username: "",
-      email: "",
-      address: "",
-    },
-    onSubmit: async (values) => {
-      console.log(values);
-      console.log(`User ID: ${id}`);
 
-      const { name, address, email } = values;
-      const input = { name, address, email };
-      await addUser({
-        variables: {
-          id,
-          input,
-        },
-      });
-    },
-    validationSchema,
-  });
+  const { values, errors, handleSubmit, handleBlur, handleChange, isValid } =
+    useFormik({
+      initialValues,
+      validationSchema,
+      onSubmit: async (values, helpers) => {
+        console.log(values, helpers);
+        console.log(`User ID: ${id}`);
+        const { name, address, email } = values;
+        const input = { name, address, email };
+        await addUser({
+          variables: {
+            id,
+            input,
+          },
+        });
+      },
+    });
 
   return (
-    <form onSubmit={handleSubmit} onReset={handleReset}>
-      <Grid container spacing={2} direction="column">
-        <Grid item>
-          <TextField
-            name="username"
-            label="Username (email)"
-            placeholder="joe@example.com"
-            autoComplete="email"
-            value={values.username}
-            error={!!errors.username}
-            helperText={errors.username}
-            onChange={handleChange}
-            onBlur={handleBlur}
-          />
-        </Grid>
-        <Grid item>
-          <TextField
-            name="address"
-            label="Enter address"
-            placeholder="400 Park Ave."
-            autoComplete="address"
-            value={values.address}
-            error={!!errors.address}
-            helperText={errors.address}
-            onChange={handleChange}
-            onBlur={handleBlur}
-          />
-        </Grid>
-        <Grid item>
-          <TextField
-            name="password"
-            label="Password"
-            type="password"
-            autoComplete="new-password"
-            placeholder="***************"
-            value={values.password}
-            error={!!errors.password}
-            helperText={errors.password}
-            onChange={handleChange}
-            onBlur={handleBlur}
-          />
-        </Grid>
-        {error && (
-          <Grid item>
-            <Typography color="error">Error! {error.message}</Typography>
+    <form onSubmit={handleSubmit}>
+      <Container>
+        <Grid container spacing={2}>
+          <Grid item xs={12}>
+            <TextField
+              id="name"
+              value={values.name}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              variant="outlined"
+              label="Name"
+              error={!!errors.name}
+              helperText={errors.name}
+            />
           </Grid>
-        )}
-        <Grid item>
-          <Button type="submit" disabled={loading}>
-            Sign In
-          </Button>
+          <Grid item xs={12}>
+            <TextField
+              id="address"
+              value={values.address}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              variant="outlined"
+              label="Street Address"
+              error={!!errors.address}
+              helperText={errors.address}
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              id="email"
+              value={values.email}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              variant="outlined"
+              label="Email Address"
+              error={!!errors.email}
+              helperText={errors.email}
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <MailSwitch />
+          </Grid>
+          <Grid item xs={12}>
+            <Button type="submit" disabled={loading}>
+              Save
+            </Button>
+          </Grid>
         </Grid>
-      </Grid>
+      </Container>
     </form>
   );
 };

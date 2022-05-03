@@ -55,6 +55,10 @@ export const Home = () => {
             magna tempus vel.
           </Typography>
         </Grid>
+        <footer>
+          {" "}
+          <i> All rights reserved Carmen and Colomba 2022 </i>
+        </footer>
       </Grid>
     </>
   );
